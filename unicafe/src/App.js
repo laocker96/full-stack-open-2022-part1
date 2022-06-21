@@ -20,12 +20,25 @@ const Feedback = ({ handleFeedback }) => {
 }
 
 const Statistics = ({ good, neutral, bad }) => {
+
+  const getTotal = () => good + neutral + bad;
+
+  // (good: 1, neutral: 0, bad: -1)
+  const getAverage = () => {
+    return (good * 1 + neutral * 0 + bad * (-1)) / getTotal();
+  }
+
+  const getPositive = () => good * 100 / getTotal();
+
   return (
     <>
       <h1>statistics</h1>
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
+      <p>all {good + neutral + bad}</p>
+      <p>average {getTotal() != 0 ? getAverage() : "not available"}</p>
+      <p>positive {getTotal() != 0 ? `${getPositive()}%` : "not available"}</p>
     </>
   );
 }
