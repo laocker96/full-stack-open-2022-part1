@@ -30,6 +30,15 @@ const Statistics = ({ good, neutral, bad }) => {
 
   const getPositive = () => good * 100 / getTotal();
 
+  // Alternative is with ternary conditional with a single return
+  if (getTotal() === 0)
+    return (
+      <>
+        <h1>statistics</h1>
+        <p>No feedback given</p>
+      </>
+    );
+
   return (
     <>
       <h1>statistics</h1>
@@ -41,6 +50,7 @@ const Statistics = ({ good, neutral, bad }) => {
       <p>positive {getTotal() != 0 ? `${getPositive()}%` : "not available"}</p>
     </>
   );
+
 }
 
 const App = () => {
